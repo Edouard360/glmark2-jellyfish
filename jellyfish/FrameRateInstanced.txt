@@ -1,0 +1,2 @@
+The average Frame Rate for this session FrameRateInstanced with OpenGL 
+FPS: -842150451

@@ -1,0 +1,2 @@
+The average Frame Rate for this session with OpenGL 
+FPS: 4456
