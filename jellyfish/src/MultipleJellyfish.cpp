@@ -5,7 +5,6 @@
 
 #include <common/shader.hpp>
 #include <common/texture.hpp>
-#include "../data/conf.h"
 #include "../util/json.hpp"
 
 using json = nlohmann::json;

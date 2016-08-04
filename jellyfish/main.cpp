@@ -44,7 +44,17 @@ int main( void )
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Open a window and create its OpenGL context
-	window = glfwCreateWindow(1000, 500, "Tutorial 02 - Red triangle", NULL, NULL);// glfwGetPrimaryMonitor(), NULL);
+    if(FULL_SCREEN){
+        window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Jellyfish Benchmark",  glfwGetPrimaryMonitor(), NULL);
+    }else{
+        window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Jellyfish Benchmark", NULL, NULL);
+    }
+	
+
+	int width, height;
+	glfwGetWindowSize(window, &width, &height);
+	cout<< "This is width :"  << width<<"\n";
+	cout<< "This is height :" << height<<"\n";
 
 	if( window == NULL ){
 		fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
@@ -80,7 +90,7 @@ int main( void )
 	glBindVertexArray(VertexArrayID);
 
 
-	InstancedJellyfish* jellyfish = new InstancedJellyfish();
+	SingleJellyfish* jellyfish = new SingleJellyfish();
 	Gradient* gradient = new Gradient();
 
 	jellyfish->initialize();

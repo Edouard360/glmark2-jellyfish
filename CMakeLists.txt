@@ -53,6 +53,7 @@ add_executable(jellyfish
 	jellyfish/main.cpp
 
 	jellyfish/data/conf.h
+	jellyfish/data/jellyfish_attributes.h
 
 	jellyfish/src/AbstractJellyfish.h
 	jellyfish/src/AbstractJellyfish.cpp

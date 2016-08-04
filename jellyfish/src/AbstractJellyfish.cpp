@@ -4,6 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "../data/conf.h"
+#include "../data/jellyfish_attributes.h"
 
 #ifdef __APPLE__
     #include <sys/time.h>
@@ -138,7 +139,7 @@ AbstractJellyfish::updateUniforms()
 	uWorld = glm::scale(uWorld, glm::vec3(5.0, 5.0, 5.0));
 	uWorld = glm::translate(uWorld, glm::vec3(0.0, glm::sin(rotation / 10.0) * 2.5, 0.0));
 
-	uWorldViewProj = glm::perspective(glm::radians(30.0), 1920. / 1080., 20.0, 120.0);
+	uWorldViewProj = glm::perspective(glm::radians(ANGLE), WINDOW_WIDTH/WINDOW_HEIGHT, NEAR, FAR);
 	uWorldViewProj = uWorldViewProj*uWorld;
 
 	uWorldInvTranspose = glm::inverse(uWorldInvTranspose);

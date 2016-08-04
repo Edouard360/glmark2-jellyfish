@@ -3,7 +3,6 @@
 
 #include <common/shader.hpp>
 #include <common/texture.hpp>
-#include "../data/conf.h"
 
 #include <fstream>
 using namespace std;
