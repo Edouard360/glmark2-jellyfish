@@ -3,6 +3,7 @@ const double ANGLE = 30;
 const double NEAR = 20;
 const double FAR = 120;
 const int MAX_NUMBER = 100;
+const int UPDATE_FPS_RATE = 5000;
 
 const bool FULL_SCREEN = false;
 const double WINDOW_WIDTH = 1900;

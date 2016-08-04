@@ -127,8 +127,8 @@ AbstractJellyfish::updateUniforms()
 
 	accumulatedTimeInMs += elapsedTime;
 
-	if (countForFPS++ == 5000) {
-		AverageFPS = 5000 * 1000 / accumulatedTimeInMs;
+	if (countForFPS++ == UPDATE_FPS_RATE) {
+		AverageFPS = UPDATE_FPS_RATE * 1000 / accumulatedTimeInMs;
 		countForFPS = 0;
 		accumulatedTimeInMs = 0;
 	}
