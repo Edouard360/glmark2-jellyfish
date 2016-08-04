@@ -1,11 +1,10 @@
+#ifndef __APPLE__
 #ifndef TIME_H_
 #define TIME_H_
-
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <stdint.h> // portable: uint64_t   MSVC: __int64 
-
 
 // MSVC defines this in winsock2.h!?
 typedef struct timeval {
@@ -32,4 +31,5 @@ inline int gettimeofday(struct timeval * tp, struct timezone * tzp)
 	return 0;
 }
 
+#endif
 #endif

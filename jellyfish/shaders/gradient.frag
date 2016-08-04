@@ -1,3 +1,5 @@
+#version 330 core
+
 #ifdef GL_ES
 precision highp float;
 #endif
@@ -6,10 +8,11 @@ precision highp float;
 uniform vec3 color1;
 uniform vec3 color2;
 
-varying vec2 uv;
+in vec2 uv;
+
+out vec4 color;
 
 void main()
 {
-    vec3 color = mix(color1, color2, uv.x * uv.y);
-    gl_FragColor = vec4(color, 1.0);
+    color = vec4(mix(color1, color2, uv.x * uv.y),1.0);
 }

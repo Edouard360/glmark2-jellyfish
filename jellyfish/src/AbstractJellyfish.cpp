@@ -5,10 +5,14 @@
 
 #include "../data/conf.h"
 
+#ifdef __APPLE__
+    #include <sys/time.h>
+#endif
+
 
 using namespace std;
 
-AbstractJellyfish::AbstractJellyfish():countForFPS(0), accumulatedTimeInMs(0)
+AbstractJellyfish::AbstractJellyfish():accumulatedTimeInMs(0),countForFPS(0)
 {
 }
 
@@ -28,10 +32,10 @@ AbstractJellyfish::draw() {
 
 void
 AbstractJellyfish::insertAttributes() {
-	std::vector<GLfloat> position(position, position + sizeof(position) / sizeof(position[0]));
-	std::vector<GLfloat> normal(normal, normal + sizeof(normal) / sizeof(normal[0]));
-	std::vector<GLfloat> color(color, color + sizeof(color) / sizeof(color[0]));
-	std::vector<GLfloat> texture(texture, texture + sizeof(texture) / sizeof(texture[0]));
+	std::vector<GLfloat> position(position_data, position_data + sizeof(position_data) / sizeof(position_data[0]));
+	std::vector<GLfloat> normal(normal_data, normal_data + sizeof(normal_data) / sizeof(normal_data[0]));
+	std::vector<GLfloat> color(color_data, color_data + sizeof(color_data) / sizeof(color_data[0]));
+	std::vector<GLfloat> texture(texture_data, texture_data + sizeof(texture_data) / sizeof(texture_data[0]));
 
 	attributeMap.insert(pair<string, attribute>("position", { 0, 0 ,position }));
 	attributeMap.insert(pair<string, attribute>("normal", { 0, 0 ,normal }));
@@ -85,17 +89,11 @@ AbstractJellyfish::getAttribLocation()
 void
 AbstractJellyfish::initializeUniforms()
 {
-	glm::mat4 uWorld = glm::mat4(1.0f);
-	glm::mat4 uWorldViewProj = glm::mat4(1.0f);
-	glm::mat4 uWorldInvTranspose = glm::mat4(1.0f);
-
 	gettimeofday(&tv, NULL);
 
 	now = static_cast<uint64_t>(tv.tv_sec) * 1000 + static_cast<uint64_t>(tv.tv_usec / 1000);
 	lastUpdateTime_ = now;
 	rotation = 0;
-	float uCurrentTime = 0;
-	int whichCaustic = 0;
 
 	uLightPos = glm::vec3(10.0, 40.0, -60.0);
 	uLightRadius = 200.0;
@@ -119,6 +117,7 @@ AbstractJellyfish::updateUniforms()
 {
 	gettimeofday(&tv, NULL);
 	now = static_cast<uint64_t>(tv.tv_sec) * 1000 + static_cast<uint64_t>(tv.tv_usec / 1000);
+    
 	uint64_t elapsedTime = now - lastUpdateTime_;
 	rotation += (double)(2.0 * elapsedTime) / 1000.0;
 	uCurrentTime = static_cast<uint64_t>(now) % 100000000 / 1000.0;
@@ -187,13 +186,13 @@ AbstractJellyfish::initialize()
 {
 	createProgram();
 
-	elementCount = (GLuint)(sizeof(index) / sizeof(index[0]));
+	elementCount = (GLuint)(sizeof(index_data) / sizeof(index_data[0]));
 
 	insertAttributes();
 	getAttribLocation();
 	createAndFillBuffers();
 
-	std::vector<GLuint>  index(index, index + sizeof(index) / sizeof(index[0]));
+	std::vector<GLuint>  index(index_data, index_data + sizeof(index_data) / sizeof(index_data[0]));
 	glGenBuffers(1, &indexBuffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, (index.size()) * sizeof(GL_UNSIGNED_INT), &index[0], GL_STATIC_DRAW);

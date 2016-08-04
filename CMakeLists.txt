@@ -76,24 +76,35 @@ add_executable(jellyfish
 	common/shader.hpp
 	common/texture.cpp
 	common/texture.hpp
-
 )
+
 target_link_libraries(jellyfish
 	${ALL_LIBS}
 )
+
+###################
+set_target_properties(jellyfish PROPERTIES
+    CXX_STANDARD 11
+    CXX_STANDARD_REQUIRED ON
+    COMPILE_DEFINITIONS "$<$<CXX_COMPILER_ID:MSVC>:_SCL_SECURE_NO_WARNINGS>"
+    COMPILE_OPTIONS "$<$<CXX_COMPILER_ID:MSVC>:/EHsc;$<$<CONFIG:Release>:/Od>>"
+)
+###################
+
+
 # Xcode and Visual working directories
 set_target_properties(jellyfish PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/jellyfish/")
 create_target_launcher(jellyfish WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/jellyfish/")
 create_default_target_launcher(jellyfish WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/jellyfish/") # tut 1 is not the default or people would complain that tut 2 doesn't work
 
-SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
+SOURCE_GROUP(common REGULAR_EXPRESSION      ".*/common/.*")
 SOURCE_GROUP(data REGULAR_EXPRESSION		".*/.*/data/.*")
-SOURCE_GROUP(src REGULAR_EXPRESSION	".*/src/.*")
-SOURCE_GROUP(shaders REGULAR_EXPRESSION		".*/shaders/.*")
-SOURCE_GROUP(util REGULAR_EXPRESSION		".*/util/.*")
+SOURCE_GROUP(src REGULAR_EXPRESSION         ".*/src/.*")
+SOURCE_GROUP(shaders REGULAR_EXPRESSION     ".*/shaders/.*")
+SOURCE_GROUP(util REGULAR_EXPRESSION        ".*/util/.*")
 
-# Another example of regular expression we could use
-# SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shader$" )
+## Another example of regular expression we could use
+## SOURCE_GROUP(shader REGULAR_EXPRESSION ".*/.*shader$" )
 
 if (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
 add_custom_command(

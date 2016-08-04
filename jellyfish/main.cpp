@@ -37,18 +37,14 @@ int main( void )
 		return -1;
 	}
 
-	glfwWindowHint(GLFW_SAMPLES, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_SAMPLES, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Open a window and create its OpenGL context
-	window = glfwCreateWindow(1920, 1080, "Tutorial 02 - Red triangle", NULL, NULL);// glfwGetPrimaryMonitor(), NULL);
-	int width, height;
-	glfwGetWindowSize(window,
-		&width,
-		&height
-	);
+	window = glfwCreateWindow(1000, 500, "Tutorial 02 - Red triangle", NULL, NULL);// glfwGetPrimaryMonitor(), NULL);
 
 	if( window == NULL ){
 		fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
@@ -75,17 +71,15 @@ int main( void )
 
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_DEPTH_TEST);
-	glEnable(GL_BLEND);
+	//glEnable(GL_BLEND); Drastically increase/decrease performances
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glFrontFace(GL_CW);
-
-	glfwSwapInterval(0);
 
 	GLuint VertexArrayID;
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
 
-	glm::vec3 offset = glm::vec3(0.0, 0.0, 0.0);
+
 	InstancedJellyfish* jellyfish = new InstancedJellyfish();
 	Gradient* gradient = new Gradient();
 

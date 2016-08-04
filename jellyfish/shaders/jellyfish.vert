@@ -1,7 +1,9 @@
-attribute vec3 position;
-attribute vec3 normal;
-attribute vec3 color;
-attribute vec3 texture;
+#version 330 core
+
+layout(location = 0) in vec3 position;
+layout(location = 1) in vec3 normal;
+layout(location = 2) in vec3 color;
+layout(location = 3) in vec3 texture;
 //ONLY FOR INSTANCED JELLYFISH attribute vec3 offset;
 
 uniform mat4 uWorld;
@@ -16,11 +18,11 @@ uniform vec4 uFresnelCol;
 uniform float uFresnelPower;
 uniform float uCurrentTime;
 
-varying vec2 vTextureCoord;
-varying vec4 vWorld;
-varying vec3 vDiffuse;
-varying vec3 vAmbient;
-varying vec3 vFresnel;
+out vec2 vTextureCoord;
+out vec4 vWorld;
+out vec3 vDiffuse;
+out vec3 vAmbient;
+out vec3 vFresnel;
 
 void main(void)
 {
