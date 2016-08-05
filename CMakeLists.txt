@@ -2,6 +2,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (Glmark2-Jellyfish)
 
+find_package(PNG REQUIRED)
 find_package(OpenGL REQUIRED)
 
 if( CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR )
@@ -28,14 +29,17 @@ if(INCLUDE_DISTRIB)
 endif(INCLUDE_DISTRIB)
 
 include_directories(
+	${PNG_INCLUDE_DIR}
 	external/glfw-3.1.2/include/GLFW/
 	external/glm-0.9.7.1/
 	external/glew-1.13.0/include/
 	.
 )
 
+
 set(ALL_LIBS
 	${OPENGL_LIBRARY}
+	${PNG_LIBRARY}
 	glfw
 	GLEW_1130
 )
@@ -90,6 +94,7 @@ set_target_properties(jellyfish PROPERTIES
     COMPILE_DEFINITIONS "$<$<CXX_COMPILER_ID:MSVC>:_SCL_SECURE_NO_WARNINGS>"
     COMPILE_OPTIONS "$<$<CXX_COMPILER_ID:MSVC>:/EHsc;$<$<CONFIG:Release>:/Od>>"
 )
+
 ###################
 
 

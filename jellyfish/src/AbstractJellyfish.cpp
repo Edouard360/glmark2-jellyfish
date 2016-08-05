@@ -108,8 +108,13 @@ void
 AbstractJellyfish::initializeTextures()
 {
 	int length = (sizeof(images_location_data) / sizeof(images_location_data[0]));
-	for (int i = 0; i < length; i++) {
+    
+    int width,height;
+    uSampler[0] = loadTexture(images_location_data[0],width,height);
+    
+	for (int i =   1; i < length; i++) {//CHANGE WITH ONE
 		uSampler[i] = loadBMP_custom(images_location_data[i]);
+        
 	}
 }
 

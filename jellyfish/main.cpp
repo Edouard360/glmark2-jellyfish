@@ -17,7 +17,6 @@ GLFWwindow* window;
 #include <glm/gtc/matrix_transform.hpp>
 using namespace glm;
 
-
 #include <common/shader.hpp>
 #include <common/texture.hpp>
 #include "data/conf.h"
@@ -81,7 +80,7 @@ int main( void )
 
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_DEPTH_TEST);
-	//glEnable(GL_BLEND); Drastically increase/decrease performances
+	glEnable(GL_BLEND); //Drastically increase/decrease performances
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glFrontFace(GL_CW);
 

@@ -24446,7 +24446,7 @@ const GLuint index_data[] = {
 };
 
 static char* images_location_data[] = {
-	"data/img/jellyfish256White.bmp",
+	"data/img/jellyfish256.png",
 	"data/img/jellyfish-caustics-01.bmp",
 	"data/img/jellyfish-caustics-02.bmp",
 	"data/img/jellyfish-caustics-03.bmp",
