@@ -1,7 +1,7 @@
 //Configuration file
 const double ANGLE = 30;
-const double NEAR = 20;
-const double FAR = 120;
+const double NEAREST = 20;
+const double FURTHEST = 120;
 const int MAX_NUMBER = 100;
 const int UPDATE_FPS_RATE = 5000;
 

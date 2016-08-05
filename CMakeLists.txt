@@ -2,7 +2,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (Glmark2-Jellyfish)
 
-find_package(PNG REQUIRED)
+#find_package(PNG REQUIRED)
 find_package(OpenGL REQUIRED)
 
 if( CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR )
@@ -52,7 +52,7 @@ add_definitions(
 	-D_CRT_SECURE_NO_WARNINGS
 )
 
-# Tutorial 2
+# Jellyfish
 add_executable(jellyfish
 	jellyfish/main.cpp
 

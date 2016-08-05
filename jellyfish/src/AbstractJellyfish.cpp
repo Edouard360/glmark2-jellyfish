@@ -110,12 +110,10 @@ AbstractJellyfish::initializeTextures()
 	int length = (sizeof(images_location_data) / sizeof(images_location_data[0]));
     
     int width,height;
-    uSampler[0] = loadTexture(images_location_data[0],width,height);
     
-	for (int i =   1; i < length; i++) {//CHANGE WITH ONE
+	for (int i =   0; i < length; i++) {//CHANGE WITH ONE
 		uSampler[i] = loadBMP_custom(images_location_data[i]);
-        
-	}
+    }
 }
 
 void
@@ -144,7 +142,7 @@ AbstractJellyfish::updateUniforms()
 	uWorld = glm::scale(uWorld, glm::vec3(5.0, 5.0, 5.0));
 	uWorld = glm::translate(uWorld, glm::vec3(0.0, glm::sin(rotation / 10.0) * 2.5, 0.0));
 
-	uWorldViewProj = glm::perspective(glm::radians(ANGLE), WINDOW_WIDTH/WINDOW_HEIGHT, NEAR, FAR);
+	uWorldViewProj = glm::perspective(glm::radians(ANGLE), WINDOW_WIDTH/WINDOW_HEIGHT, NEAREST, FURTHEST);
 	uWorldViewProj = uWorldViewProj*uWorld;
 
 	uWorldInvTranspose = glm::inverse(uWorldInvTranspose);

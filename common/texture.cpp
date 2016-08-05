@@ -6,7 +6,7 @@
 
 #include <glfw3.h>
 
-#include <png.h>
+//#include <png.h>
 #include "texture.hpp"
 
 
@@ -215,6 +215,9 @@ GLuint loadDDS(const char * imagepath){
 
 #define TEXTURE_LOAD_ERROR 0
 
+
+
+
 using namespace std;
 /** loadTexture
  * 	loads a png file into an opengl texture object, using cstdio , libpng, and opengl.
@@ -227,6 +230,8 @@ using namespace std;
  * 					should be validated by the client of this function.
  *
  */
+
+/*
 GLuint loadTexture(const string filename, int &width, int &height)
 {
     //header for testing if it is a png
@@ -355,3 +360,4 @@ GLuint loadTexture(const string filename, int &width, int &height)
     
     return texture;
 }
+*/
